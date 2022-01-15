@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<button onclick="getData()">Get data</button>
+<p id="out"></p>
+
+<script>
+
+var out = document.getElementById("out");
+
+function println(x) {
+  out.innerHTML += x + "<br>";
+}
+
+function getData() {
+
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    let data = pos.coords;
+    println("________________");
+    println("Latitude = " + data.latitude);
+    println("Longitude = " + data.longitude);
+    println("Accuracy = " + data.accuracy);
+    println("Altitude = " + data.altitude);
+    println("Altitude accuracy = " + data.altitudeAccuracy);
+  }, err => {
+    println(err.message);
+  }, options);
+
+}
+
+</script>
+
+</body>
+
+</html>
